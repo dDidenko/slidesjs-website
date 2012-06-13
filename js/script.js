@@ -9,6 +9,10 @@ $(function() {
      });
      
      $('#main_nav').scrollspy();
+
+     $('#main_nav li.active').removeClass('active');
+
+     $('#main_nav li:first').addClass('active')
      
      $('#slidesjs').click(function(e) {
          e.preventDefault();

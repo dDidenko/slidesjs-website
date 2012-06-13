@@ -599,6 +599,15 @@ a.button:hover {
     cursor: pointer;
 }
 
+@media (max-width: 960px) {
+    #topbar {
+        position: relative;
+    }
+    #main_content {
+        margin-top: 30px;
+    }
+}
+
 /*  Font Awesome
     the iconic font designed for use with Twitter Bootstrap
     -------------------------------------------------------

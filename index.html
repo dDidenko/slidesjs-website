@@ -17,8 +17,8 @@
 	<link rel="stylesheet" href="css/style.css">
 
 	<script src="js/libs/modernizr-2.5.3.min.js"></script>
-	
-	<!-- Google Analytics Asynchronous Tracking --> 
+
+	<!-- Google Analytics Asynchronous Tracking -->
 	<script type="text/javascript">
 	  var _gaq = _gaq || [];
 	  _gaq.push(['_setAccount', 'UA-2772036-11']);
@@ -29,7 +29,7 @@
 	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	  })();
 	</script>
-	
+
 	<!-- AdPacks.com Ad Code -->
 	<script type="text/javascript">
 	(function(){
@@ -43,7 +43,7 @@
 	<!-- End AdPacks.com Ad Code -->
 </head>
 <body data-spy="scroll">
-	
+
 	<div id="topbar">
 		<div class="container">
 			<div class="row">
@@ -60,7 +60,13 @@
 			</div>
 		</div>
 	</div>
-	
+
+	<div class="alert alert-fixed-top">
+    <div class="container">
+      <strong>Psst!</strong> Want to check out the SlidesJS 3 beta? Head over to: <a href="http://beta.slidesjs.com/">http://beta.slidesjs.com/</a>
+    </div>
+  </div>
+
 	<div id="main_content" class="container">
 		<div class="row">
 			<div class="span12">
@@ -84,7 +90,7 @@
 					<p>SlidesJS is a simple slideshow plugin for jQuery. Packed with a useful set of features to help novice and advanced developers alike create elegant and user-friendly slideshows.</p>
 
 					<p>SlidesJS is provided with limited support but if you find a bug please submit an <a href="https://github.com/nathansearles/slides/issues">Issue</a> with a brief description of the bug and a link to where it can be reviewed.</p>
-					
+
 					<p>For general support please visit the <a href="http://groups.google.com/group/slidesjs">SlidesJS User Group</a>.</p>
 
 					<p>SlidesJS is compatible with all modern web browsers and jQuery versions 1.4.4+.</p>
@@ -95,10 +101,10 @@
 						<a href="#" class="btn btn-success btn-large donate"><i class="icon-thumbs-up icon-large track_donate"></i> Donate</a>
 					</div>
 				</div>
-				
+
 				<div id="examples" class="section">
 					<h1><i class="icon-picture"></i> Examples</h1>
-				
+
 					<small>These examples are also included in the <a href="http://slidesjs.com/downloads/slides.zip" class="download_track">download</a>.</small>
 
 					<ul class="examples">
@@ -110,16 +116,16 @@
 						<li><a href="http://slidesjs.com/examples/standard/">Standard</a></li>
 					</ul>
 				</div>
-				
+
 				<div id="docs" class="section">
 					<h1><i class="icon-file"></i> Docs</h1>
-				
+
 					<h2 id="html">Basic markup</h2>
-				
+
 					<pre><code>&lt;!doctype html&gt;
 	&lt;head&gt;
 		&lt;title&gt;Title&lt;/title&gt;
-	
+
 		&lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt;
 			.slides_container {
 				width:570px;
@@ -131,10 +137,10 @@
 				display:block;
 			}
 		&lt;/style&gt;
-	
+
 		&lt;script src=&quot;http://code.jquery.com/jquery-latest.min.js&quot;&gt;&lt;/script&gt;
 		&lt;script src=&quot;slides.js&quot;&gt;&lt;/script&gt;
-	
+
 		&lt;script&gt;
 			$(function(){
 				$(&quot;#slides&quot;).slides();
@@ -160,9 +166,9 @@
 		&lt;/div&gt;
 	&lt;/body&gt;
 					</code></pre>
-				
+
 					<h2 id="options">Options</h2>
-				
+
 					<div id="preload" class="expand">
 						<h3>preload (boolean)</h3>
 						<p>Set true to preload images in an image based slideshow. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
@@ -235,7 +241,7 @@
 							</div>
 						</div>
 						<small><i class="icon-ok"></i> Default class name is "next".</small>
-					</div>			
+					</div>
 					<div id="prev" class="expand">
 						<h3>prev (string)</h3>
 						<p>Class name for previous button.  <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
@@ -362,7 +368,7 @@
 							</div>
 						</div>
 						<small><i class="icon-ok"></i> Must include <a href="http://gsgd.co.uk/sandbox/jquery/easing/" target="_blank">Easing plugin</a> in your project</small>
-					</div>				
+					</div>
 					<div id="start" class="expand">
 						<h3>start (number)</h3>
 						<p>Set which slide you'd like to start with. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>

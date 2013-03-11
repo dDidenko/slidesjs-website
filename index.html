@@ -1,620 +1,461 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta charset="utf-8">
 
-	<title>SlidesJS, a simple slideshow plugin for jQuery.</title>
-	<meta name="description" content="SlidesJS is a simple slideshow plugin for jQuery. Packed with a useful set of features to help novice and advanced developers alike create elegant and user-friendly slideshows.">
-	<meta name="author" content="Nathan Searles">
+  <title>SlidesJS, a responsive slideshow plug-in for jQuery (1.7.1+) with features like touch and CSS3</title>
+  <meta name="description" content="SlidesJS is a simple slideshow plugin for jQuery. Packed with a useful set of features to help novice and advanced developers alike create elegant and user-friendly slideshows.">
+  <meta name="author" content="Nathan Searles">
 
-	<meta property="og:title" content="SlidesJS, a simple slideshow plugin for jQuery">
-	<meta property="og:type" content="website">
-	<meta property="og:url" content="http://www.slidesjs.com">
-	<meta property="og:image" content="http://slidesjs.com/img/slidesjs-black.png">
-	<meta property="og:site_name" content="SlidesJS, a simple slideshow plugin for jQuery">
+  <!-- SlidesJS Required (if responsive): Sets the page width to the device width. -->
+  <meta name="viewport" content="width=device-width">
+  <!-- End SlidesJS Required -->
 
-	<link rel="stylesheet" href="css/style.css">
+  <meta property="og:title" content="SlidesJS, a simple slideshow plugin for jQuery">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://www.slidesjs.com">
+  <meta property="og:image" content="http://slidesjs.com/img/slidesjs-black.png">
+  <meta property="og:site_name" content="SlidesJS, a simple slideshow plugin for jQuery">
 
-	<script src="js/libs/modernizr-2.5.3.min.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- End CSS -->
 
-	<!-- Google Analytics Asynchronous Tracking -->
-	<script type="text/javascript">
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-2772036-11']);
-	  _gaq.push(['_trackPageview']);
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-	</script>
+  <!-- Google Analytics Asynchronous Tracking -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2772036-11']);
+    _gaq.push(['_setDomainName', 'slidesjs.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  <!-- End Google Analytics -->
 
-	<!-- AdPacks.com Ad Code -->
-	<script type="text/javascript">
-	(function(){
-	  var bsa = document.createElement('script');
-	     bsa.type = 'text/javascript';
-	     bsa.async = true;
-	     bsa.src = '//s3.buysellads.com/ac/bsa.js';
-	  (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
-	})();
-	</script>
-	<!-- End AdPacks.com Ad Code -->
+  <!-- BuySellAds Ad Code -->
+  <script type="text/javascript">
+  (function(){
+    var bsa = document.createElement('script');
+       bsa.type = 'text/javascript';
+       bsa.async = true;
+       bsa.src = 'http://s3.buysellads.com/ac/bsa.js';
+    (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+  })();
+  </script>
+  <!-- End BuySellAds Ad Code -->
 </head>
-<body data-spy="scroll">
+<body data-spy="scroll" data-target=".navbar">
+  <!-- Start site navbar -->
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img src="img/slidesjs.png" width="130" height="26" alt="SlidesJS" class="brand">
+        <div class="nav-collapse collapse">
+          <ul class="nav pull-right">
+            <li><a href="#slides-section" class="scrollto"><i class="icon-check"></i> Overview</a></li>
+            <li><a href="#examples" class="scrollto"><i class="icon-picture"></i> Examples</a></li>
+            <li><a href="#docs" class="scrollto"><i class="icon-book"></i> Docs</a></li>
+            <li><a href="#support" class="scrollto"><i class="icon-comments"></i> Support</a></li>
+            <li><a href="#faq" class="scrollto"><i class="icon-question-sign"></i> Faq</a></li>
+            <li><a href="https://github.com/nathansearles/Slides/archive/SlidesJS-3.zip" class="track_download"><i class="icon-download"></i> Download</a></li>
+            <li><a href="https://spacebox.io/s/BbDhQ7iWGP" target="_blank" class="sbe-button btn btn-success btn-large donate track_donate"><i class="icon-thumbs-up"></i> Donate</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End site navbar -->
 
-	<div id="topbar">
-		<div class="container">
-			<div class="row">
-				<div class="span12">
-					<img src="img/slidesjs.png" width="130" height="26" alt="SlidesJS" id="slidesjs">
-					<ul id="main_nav" class="nav">
-						<li><a href="#overview"><i class="icon-check icon-large"></i> Overview</a></li>
-						<li><a href="#examples"><i class="icon-picture icon-large"></i> Examples</a></li>
-						<li><a href="#docs"><i class="icon-file icon-large"></i> Docs</a></li>
-						<li><a href="#" class="donate"><i class="icon-thumbs-up icon-large track_donate"></i> Donate</a></li>
-						<li><a href="https://github.com/nathansearles/Slides/archive/SlidesJS-1.zip"><i class="icon-download icon-large track_download"></i> Download</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="alert alert-fixed-top">
+  <div class="alert alert-fixed-top">
     <div class="container">
-      <strong>Psst!</strong> Want to check out the SlidesJS 3 beta? Head over to: <a href="http://beta.slidesjs.com/">http://beta.slidesjs.com/</a>
+      <strong>Welcome to the all new SlidesJS 3.0!</strong> Are you looking for the previous SlidesJS documentation? Head over to <a href="http://archive.slidesjs.com/">http://archive.slidesjs.com/</a>.
     </div>
   </div>
 
-	<div id="main_content" class="container">
-		<div class="row">
-			<div class="span12">
-				<div id="slides">
-					<div class="slides_container">
-						<img src="img/photo-1.jpg" width="940" height="270" alt="Photo by: Michael Silberstein Source: http://www.flickr.com/photos/michaelsilberstein/4294842946/">
-						<img src="img/photo-2.jpg" width="940" height="270" alt="Photo by: Shubert Ciencia Source: http://www.flickr.com/photos/bigberto/2857852001/">
-						<img src="img/photo-3.jpg" width="940" height="270" alt="Photo by: Ed Yourdon Source: http://www.flickr.com/photos/yourdon/4133227641/">
-						<img src="img/photo-4.jpg" width="940" height="270" alt="Photo by: Lee Source: http://www.flickr.com/photos/typicalnaloboy/4151014982/">
-					</div>
-					<a href="#" class="prev"><i class="icon-chevron-left icon-large"></i></a>
-					<a href="#" class="next"><i class="icon-chevron-right icon-large"></i></a>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="span8">
-				<div id="overview" class="section">
-					<h1><i class="icon-check"></i> Overview</h1>
+  <!--  Start SlidesJS -->
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div id="slides-section" class="section">
+            <div id="slides">
+              <img src="img/example-slide-350-1.jpg" alt="Photo by: Missy S Link: http://www.flickr.com/photos/listenmissy/5087404401/">
+              <img src="img/example-slide-350-2.jpg" alt="Photo by: Daniel Parks Link: http://www.flickr.com/photos/parksdh/5227623068/">
+              <img src="img/example-slide-350-3.jpg" alt="Photo by: Mike Ranweiler Link: http://www.flickr.com/photos/27874907@N04/4833059991/">
+              <img src="img/example-slide-350-4.jpg" alt="Photo by: Stuart SeegerLink: http://www.flickr.com/photos/stuseeger/97577796/">
+              <a href="#" class="slidesjs-previous slidesjs-navigation"><i class="icon-chevron-left icon-large"></i></a>
+              <a href="#" class="slidesjs-next slidesjs-navigation"><i class="icon-chevron-right icon-large"></i></a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  End SlidesJS -->
 
-					<p>SlidesJS is a simple slideshow plugin for jQuery. Packed with a useful set of features to help novice and advanced developers alike create elegant and user-friendly slideshows.</p>
+  <!-- Start main content -->
+  <div class="container">
+    <div class="row">
+      <div class="span8">
 
-					<p>SlidesJS is provided with limited support but if you find a bug please submit an <a href="https://github.com/nathansearles/slides/issues">Issue</a> with a brief description of the bug and a link to where it can be reviewed.</p>
+        <!-- Overview -->
+        <div id="overview" class="section">
+          <h1 class="page_header"><i class="icon-check"></i> Overview</h1>
 
-					<p>For general support please visit the <a href="http://groups.google.com/group/slidesjs">SlidesJS User Group</a>.</p>
+          <p>SlidesJS is a responsive slideshow plug-in for jQuery (1.7.1+) with features like touch and CSS3 transitions. Give it a try above and check out the <a href="#examples" class="scrollto">examples</a> to help you get started adding SlidesJS to your project.</p>
 
-					<p>SlidesJS is compatible with all modern web browsers and jQuery versions 1.7-1.9.x.</p>
+          <hr>
 
-					<div class="btns">
-						<a href="https://github.com/nathansearles/Slides/archive/SlidesJS-1.zip" class="btn btn-inverse btn-large"><i class="icon-download icon-large track_download"></i> Download</a>
+          <div class="row">
+            <div class="span4">
+              <ul class="features">
+                <li>
+                  <h3><i class="icon-resize-horizontal icon-large"></i> Responsive</h3>
+                  <p>Create dynamic slideshows that adapt to any screen.</p>
+                </li>
+                <li>
+                  <h3><i class="icon-bolt icon-large"></i> CSS3 transitions</h3>
+                  <p>Animations that run smoothly on modern devices.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="span4">
+              <ul class="features">
+                <li>
+                  <h3><i class="icon-mobile-phone icon-large"></i> Touch</h3>
+                  <p>Swipe support that tracks touch movements on supported devices.</p>
+                </li>
+                <li>
+                  <h3><i class="icon-wrench icon-large"></i> Easy setup</h3>
+                  <p>Get going fast with the easy-to-use examples.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-						<a href="#" class="btn btn-success btn-large donate"><i class="icon-thumbs-up icon-large track_donate"></i> Donate</a>
-					</div>
-				</div>
+          <hr>
 
-				<div id="examples" class="section">
-					<h1><i class="icon-picture"></i> Examples</h1>
+          <div class="btns">
+            <a href="https://github.com/nathansearles/Slides/archive/SlidesJS-3.zip" class="btn btn-inverse btn-large push-right track_download"><i class="icon-download icon-large"></i> Download</a>
 
-					<small>These examples are also included in the <a href="https://github.com/nathansearles/Slides/archive/SlidesJS-1.zip" class="download_track">download</a>.</small>
+            <a href="https://spacebox.io/s/BbDhQ7iWGP" target="_blank" class="sbe-button btn btn-success btn-large track_donate"><i class="icon-thumbs-up icon-large"></i> Donate</a>
+          </div>
 
-					<ul class="examples">
-						<li><a href="http://slidesjs.com/examples/images-with-captions/">Images with captions</a></li>
-						<li><a href="http://slidesjs.com/examples/linking/">Linking</a></li>
-						<li><a href="http://slidesjs.com/examples/product/">Product</a></li>
-						<li><a href="http://slidesjs.com/examples/multiple/">Multiple slideshows</a></li>
-						<li><a href="http://slidesjs.com/examples/simple/">Simple (unstyled)</a></li>
-						<li><a href="http://slidesjs.com/examples/standard/">Standard</a></li>
-					</ul>
-				</div>
+          <p>Want to contribute to SlidesJS? Check it out at <a href="https://github.com/nathansearles/Slides/tree/SlidesJS-3">GitHub</a>.</p>
+        </div>
 
-				<div id="docs" class="section">
-					<h1><i class="icon-file"></i> Docs</h1>
+        <!-- Examples -->
+        <div id="examples" class="section">
+          <h1 class="page_header"><i class="icon-picture"></i> Examples</h1>
 
-					<h2 id="html">Basic markup</h2>
+          <ul class="examples">
+            <li><a href="/examples/standard/">Standard slideshow</a></li>
+            <li><a href="/examples/playing/">Playing and stopping slideshow</a></li>
+            <li><a href="/examples/multiple/">Multiple slideshows</a></li>
+            <li><a href="/examples/callbacks/">Using callbacks</a></li>
+            <li><a href="/examples/basic/">Basic sliding slideshow (unstyled)</a></li>
+            <li><a href="/examples/basic-fade/">Basic fading slideshow (unstyled)</a></li>
+            <li>More examples coming soon!</li>
+          </ul>
 
-					<pre><code>&lt;!doctype html&gt;
-	&lt;head&gt;
-		&lt;title&gt;Title&lt;/title&gt;
+          <small>These examples are also included in the <a href="https://github.com/nathansearles/Slides/archive/SlidesJS-3.zip" class="track_download">download</a>.</small>
+        </div>
 
-		&lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt;
-			.slides_container {
-				width:570px;
-				height:270px;
-			}
-			.slides_container div {
-				width:570px;
-				height:270px;
-				display:block;
-			}
-		&lt;/style&gt;
+        <!-- Docs -->
+        <div id="docs" class="section">
+          <h1 class="page_header"><i class="icon-book"></i> Docs</h1>
 
-		&lt;script src=&quot;http://code.jquery.com/jquery-latest.min.js&quot;&gt;&lt;/script&gt;
-		&lt;script src=&quot;slides.js&quot;&gt;&lt;/script&gt;
+          <h2 id="html" class="page_header">Basic markup</h2>
 
-		&lt;script&gt;
-			$(function(){
-				$(&quot;#slides&quot;).slides();
-			});
-		&lt;/script&gt;
-	&lt;/head&gt;
-	&lt;body&gt;
-		&lt;div id=&quot;slides&quot;&gt;
-			&lt;div class=&quot;slides_container&quot;&gt;
-				&lt;div&gt;
-					&lt;img src=&quot;http://placehold.it/570x270&quot;&gt;
-				&lt;/div&gt;
-				&lt;div&gt;
-					&lt;img src=&quot;http://placehold.it/570x270&quot;&gt;
-				&lt;/div&gt;
-				&lt;div&gt;
-					&lt;img src=&quot;http://placehold.it/570x270&quot;&gt;
-				&lt;/div&gt;
-				&lt;div&gt;
-					&lt;img src=&quot;http://placehold.it/570x270&quot;&gt;
-				&lt;/div&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/body&gt;
-					</code></pre>
+          <pre><code>&lt;!doctype html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    /* Prevents slides from flashing */
+    #slides {
+      display:none;
+    }
+  &lt;/style&gt;
 
-					<h2 id="options">Options</h2>
+  &lt;script src=&quot;http://code.jquery.com/jquery-latest.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;jquery.slides.min.js&quot;&gt;&lt;/script&gt;
 
-					<div id="preload" class="expand">
-						<h3>preload (boolean)</h3>
-						<p>Set true to preload images in an image based slideshow. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-	    preload: true
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default value is false.</small>
-					</div>
-					<div id="preloadimage" class="expand">
-						<h3>preloadImage (string)</h3>
-						<p>Name and location of loading image for preloader. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		preload: true,
-		preloadImage: '/img/loading.gif'
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default path is "/img/loading.gif".</small>
-					</div>
-					<div id="container-name" class="expand">
-						<h3>container (string)</h3>
-						<p>Class name for slides container. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		container: 'slides_container'
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default class name is "slides_container".</small>
-					</div>
-					<div id="generatenextprev" class="expand">
-						<h3>generateNextPrev (boolean)</h3>
-						<p>Auto generate next/prev buttons.  <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		generateNextPrev: true
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default value is false.</small>
-					</div>
-					<div id="next" class="expand">
-						<h3>next (string)</h3>
-						<p>Class name for custom next button. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		next: 'next'
-	  });
-	});</code></pre>
+  &lt;script&gt;
+    $(function(){
+      $(&quot;#slides&quot;).slidesjs({
+        width: 940,
+        height: 528
+      });
+    });
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id=&quot;slides&quot;&gt;
+    &lt;img src=&quot;http://placehold.it/940x528&quot;&gt;
+    &lt;img src=&quot;http://placehold.it/940x528&quot;&gt;
+    &lt;img src=&quot;http://placehold.it/940x528&quot;&gt;
+    &lt;img src=&quot;http://placehold.it/940x528&quot;&gt;
+    &lt;img src=&quot;http://placehold.it/940x528&quot;&gt;
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+        </div>
 
-	<pre><code>&lt;a href=&quot;#&quot; class=&quot;next&quot;&gt;Next&lt;/a&gt;</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default class name is "next".</small>
-					</div>
-					<div id="prev" class="expand">
-						<h3>prev (string)</h3>
-						<p>Class name for previous button.  <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		prev: 'prev'
-	  });
-	});</code></pre>
+        <h2 id="options" class="page_header">Options</h2>
 
-	<pre><code>&lt;a href=&quot;#&quot; class=&quot;prev&quot;&gt;Prev&lt;/a&gt;</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default class name is "prev".</small>
-					</div>
-					<div id="pagination" class="expand">
-						<h3>pagination (boolean)</h3>
-						<p>If you're not using pagination you can set to false, but don't have to. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		pagination: true
-	  });
-	});</code></pre>
-							</div>
-						</div>
-					</div>
-					<div id="generatepagination" class="expand">
-						<h3>generatePagination (boolean)</h3>
-						<p>Auto generate pagination. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		generatePagination: true
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default value is true.</small>
-					</div>
-					<div id="paginationclass" class="expand">
-						<h3>paginationClass (string)</h3>
-						<p>Class name for pagination. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		paginationClass: 'pagination'
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default class name is "pagination".</small>
-					</div>
-					<div id="currentclass" class="expand">
-						<h3>currentClass (string)</h3>
-						<p>Class name for current pagination item. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		currentClass: 'current'
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default class name is "current".</small>
-					</div>
-					<div id="fadespeed" class="expand">
-						<h3>fadeSpeed (number)</h3>
-						<p>Set the speed of the fading animation in milliseconds. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		fadeSpeed: 350
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default is 350 milliseconds.</small>
-					</div>
-					<div id="fadeeasing" class="expand">
-						<h3>fadeEasing (string)</h3>
-						<p>Set the easing of the fade animation. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		fadeEasing: "easeOutQuad"
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Must include <a href="http://gsgd.co.uk/sandbox/jquery/easing/" target="_blank">Easing plugin</a> in your project</small>
-					</div>
-					<div id="slidespeed" class="expand">
-						<h3>slideSpeed (number)</h3>
-						<p>Set the speed of the sliding animation in milliseconds. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		slideSpeed: 350
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default is 350 milliseconds.</small>
-					</div>
-					<div id="slideeasing" class="expand">
-						<h3>slideEasing (string)</h3>
-						<p>Set the easing of the sliding animation. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		slideEasing: "easeOutQuad"
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Must include <a href="http://gsgd.co.uk/sandbox/jquery/easing/" target="_blank">Easing plugin</a> in your project</small>
-					</div>
-					<div id="start" class="expand">
-						<h3>start (number)</h3>
-						<p>Set which slide you'd like to start with. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		start: 1
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default is 1 and will start on the first slide.</small>
-					</div>
-					<div id="effect" class="expand">
-						<h3>effect (string)</h3>
-						<p>Set effect, slide or fade for next/prev and pagination. If you use just one effect name it'll be applied to both or you can state two effect names. The first name will be for next/prev and the second will be for pagination. Must be separated by a comma. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		effect: 'slide'
-	  });
-	});</code></pre>
+        <div id="widthandheight" class="expand">
+          <h3>width (number) &amp; height (number)</h3>
+          <p>Set width and height of the slideshow.  <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
+          <div class="content">
+            <div class="innner">
+<pre><code>$(function(){
+  $("#slides").slidesjs({
+    width: 700,
+    height: 393
+  });
+});</code></pre>
+            </div>
+          </div>
+          <small><i class="icon-warning-sign"></i> This must be defined.</small>
+        </div>
 
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		effect: 'slide, fade'
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default effect is "slide", which will slide on both next/prev and pagination.</small>
-					</div>
-					<div id="crossfade" class="expand">
-						<h3>crossfade (boolean)</h3>
-	 					<p>Crossfade images in a image based slideshow. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		crossfade: true
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default value is false.</small>
-					</div>
-					<div id="randomize" class="expand">
-						<h3>randomize (boolean)</h3>
-	 					<p>Set to true to randomize slides. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		randomize: true
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default value is false.</small>
-					</div>
-					<div id="play" class="expand">
-						<h3>play (number)</h3>
-	 					<p>Autoplay slideshow, a positive number will set to true and be the time between slide animation in milliseconds. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		play: 5000
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default value is 0 and is false.</small>
-					</div>
-					<div id="pause" class="expand">
-						<h3>pause (number)</h3>
-	 					<p>Pause slideshow on click of next/prev or pagination. A positive number will set to true and be the time of pause in milliseconds. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		pause: 2500
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default value is 0 and is false.</small>
-					</div>
-					<div id="hoverpause" class="expand">
-						<h3>hoverPause (boolean)</h3>
-	 					<p>Set to true and hovering over slideshow will pause it. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		hoverPause: true
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default value is false.</small>
-					</div>
-					<div id="autoheight" class="expand">
-						<h3>autoHeight (boolean)</h3>
-	 					<p>Set to true to auto adjust height. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		autoHeight: true
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default value is false.</small>
-					</div>
-					<div id="autoheightspeed" class="expand">
-						<h3>autoHeightSpeed (number)</h3>
-	 					<p>Set auto height animation time in milliseconds. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		autoHeightSpeed: 350
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default value is 350.</small>
-					</div>
-					<div id="bigtarget" class="expand">
-						<h3>bigTarget (boolean)</h3>
-	 					<p>Set to true and the whole slide will link to next slide on click. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		bigTarget: true
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default value is false.</small>
-					</div>
-					<div id="animationstart" class="expand">
-						<h3>animationStart() (callback)</h3>
-	 					<p>Function called at the start of animation. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		animationStart: function() {
-			// Do something awesome!
-		}
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default value is empty.</small>
-					</div>
-					<div id="animationcomplete" class="expand">
-						<h3>animationComplete() (callback)</h3>
-	 					<p>Function called at the completion of animation <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
-						<div class="content">
-							<div class="innner">
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		animationComplete: function() {
-			// Do something awesome!
-		}
-	  });
-	});</code></pre>
+        <div id="start" class="expand">
+          <h3>start (number)</h3>
+          <p>Set the first slide in the slideshow.  <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
+          <div class="content">
+            <div class="innner">
+<pre><code>$(function(){
+  $("#slides").slidesjs({
+    start: 3
+  });
+});</code></pre>
+            </div>
+          </div>
+          <small><i class="icon-ok"></i> Default value is 1.</small>
+        </div>
 
-	<pre><code>$(function(){
-	  $("#slides").slides({
-		animationComplete: function(current) {
-			// Get the "current" slide number
-			// console.log(current);
-		}
-	  });
-	});</code></pre>
-							</div>
-						</div>
-						<small><i class="icon-ok"></i> Default value is empty.</small>
-					</div>
-					<h3 id="combining" class="example">Combining custom options</h3>
+        <div id="navigation" class="expand">
+          <h3>navigation (object)</h3>
+          <p>Next and previous button settings. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
+          <div class="content">
+            <div class="innner">
+<pre><code>$(function(){
+  $("#slides").slidesjs({
+    navigation: {
+      active: true,
+        // [boolean] Generates next and previous buttons.
+        // You can set to false and use your own buttons.
+        // User defined buttons must have the following:
+        // previous button: class="slidesjs-previous slidesjs-navigation"
+        // next button: class="slidesjs-next slidesjs-navigation"
+      effect: "slide"
+        // [string] Can be either "slide" or "fade".
+    }
+  });
+});</code></pre>
+            </div>
+          </div>
+        </div>
 
-	<pre><code>$(function(){
-	  $("#slides").slides({
-	    preload: true,
-	    preloadImage: '/img/loading.gif',
-	    play: 5000,
-	    pause: 2500,
-	    hoverPause: true
-	  });
-	});</code></pre>
-					<small><i class="icon-ok"></i> Note: be sure to not include a ',' after the last line or you'll get an error in Internet Explorer.</small>
-				</div>
-			</div>
-			<div class="span4">
-				<div id="ad_packs">
-					<!-- AdPacks.com Zone Code -->
-					<div id="bsap_1274362" class="bsarocks bsap_e1c36c6d71b660012e27f395930d4761"></div>
-					<a href="http://adpacks.com" id="bsap_aplink">via Ad Packs</a>
-					<!-- End AdPacks.com Zone Code -->
-				</div>
+        <div id="pagination" class="expand">
+          <h3>pagination (object)</h3>
+          <p>Pagination settings <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
+          <div class="content">
+            <div class="innner">
+<pre><code>$(function(){
+  $("#slides").slidesjs({
+    pagination: {
+      active: true,
+        // [boolean] Create pagination items.
+        // You cannot use your own pagination. Sorry.
+      effect: "slide"
+        // [string] Can be either "slide" or "fade".
+    }
+  });
+});</code></pre>
+            </div>
+          </div>
+        </div>
 
-				<div class="social-buttons clearfix">
-					<ul>
-						<li class="ctwitter"><a href="http://twitter.com/share" class="socialite twitter-share" data-text="SlidesJS, a simple slideshow plugin for jQuery." data-url="http://slidesjs.com" data-count="vertical" data-via="slidesjs" rel="nofollow" target="_blank"><span class="vhidden">Share on Twitter</span></a></li>
-						<li class="cgoogle"><a href="https://plus.google.com/share?url=http://slidesjs.com" class="socialite googleplus-one" data-size="tall" data-href="http://slidesjs.com" rel="nofollow" target="_blank"><span class="vhidden">Share on Google+</span></a></li>
-						<li class="cfacebook"><a href="http://www.facebook.com/sharer.php?u=http://slidesjs.com&amp;t=SlidesJS, a simple slideshow plugin for jQuery." class="socialite facebook-like" data-href="http://slidesjs.com" data-send="false" data-layout="box_count" data-width="60" data-show-faces="false" rel="nofollow" target="_blank"><span class="vhidden">Share on Facebook</span></a></li>
-						<li class="cpinterest"><a href="http://pinterest.com/pin/create/button/?url=http://slidesjs.com/&amp;media=http://slidesjs.com/img/slidesjs-black.png&amp;description=SlidesJS, a simple slideshow plugin for jQuery" class="socialite pinterest-pinit" data-count-layout="vertical"><span class="vhidden">Pin It!</span></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div id="footer">
-			<div class="row">
-				<div class="span12">
-					<p>This site has been built using <a href="http://fortawesome.github.com/Font-Awesome/" target="_blank">Font Awesome</a>, <a href="http://twitter.github.com/bootstrap/"  target="_blank">Twitter Bootstrap</a>, <a href="http://softwaremaniacs.org/soft/highlight/en/" target="_blank">Highlight.js</a>, <a href="http://placehold.it/" target="_blank">Placehold.it</a> and <a href="http://subtlepatterns.com/" target="_blank">Subtle Patterns</a>.</p>
-					<p>Want to advertise on this site? Check out ads via <a href="http://bsa.ly/jec">Ad Packs</a>.</p>
-					<p>SlidesJS is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache license</a>. &copy; 2012 <a href="http://nathansearles.com" target="_blank">Nathan Searles</a>. All rights reserved.</p>
-				</div>
-			</div>
-		</div>
-	</div>
+        <div id="play" class="expand">
+          <h3>play (object)</h3>
+          <p>Play and stop button setting. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
+          <div class="content">
+            <div class="innner">
+<pre><code>$(function(){
+  $("#slides").slidesjs({
+    play: {
+      active: true,
+        // [boolean] Generate the play and stop buttons.
+        // You cannot use your own buttons. Sorry.
+      effect: "slide",
+        // [string] Can be either "slide" or "fade".
+      interval: 5000,
+        // [number] Time spent on each slide in milliseconds.
+      auto: false,
+        // [boolean] Start playing the slideshow on load.
+      swap: true
+        // [boolean] show/hide stop and play buttons
+    }
+  });
+});</code></pre>
+            </div>
+          </div>
+        </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+        <div id="effect" class="expand">
+          <h3>effect (object)</h3>
+          <p>Effects setting. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
+          <div class="content">
+            <div class="innner">
+<pre><code>$(function(){
+  $("#slides").slidesjs({
+    effect: {
+      slide: {
+        // Slide effect settings.
+        speed: 200
+          // [number] Speed in milliseconds of the slide animation.
+      },
+      fade: {
+        speed: 300,
+          // [number] Speed in milliseconds of the fade animation.
+        crossfade: true
+          // [boolean] Cross-fade the transition.
+      }
+    }
+  });
+});</code></pre>
+            </div>
+          </div>
+        </div>
 
-<script src="/js/plugins.js"></script>
-<script src="/js/script.js"></script>
+        <div id="controls" class="expand">
+          <h3>callback (function)</h3>
+          <p>SlidesJS callbacks. <a href="#" class="show"><i class="icon-plus-sign"></i> Show example</a></p>
+          <div class="content">
+            <div class="innner">
+<pre><code>$(function(){
+  $("#slides").slidesjs({
+    callback: {
+      loaded: function(number) {
+        // Do something awesome!
+        // Passes start slide number
+      },
+      start: function(number) {
+        // Do something awesome!
+        // Passes slide number at start of animation
+      },
+      complete: function(number) {
+        // Do something awesome!
+        // Passes slide number at end of animation
+      }
+    }
+  });
+});</code></pre>
+            </div>
+          </div>
+        </div>
 
-<script>
-hljs.tabReplace = '    ';
-hljs.initHighlightingOnLoad();
-</script>
+        <!-- Support -->
+        <div id="support" class="section">
+          <h1 class="page_header"><i class="icon-comments"></i> Support</h1>
 
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="display:none" target="_blank">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYCYLkOCZ1mBVQKL3MtV+2aeCD4h4mZDypm9SouNH6LVM/oYzrs4ZemvmRZ0QGpiJF9kDGGtML4dCxnAKQwfallNrkRcZcpSHQSUSEMK4N97Gbzute1gNoA6KBumhJ4tbL/8HEDdFBuTiuMUGo+ZFrgg47fqFr9J+SoCj1jIzR6otTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI2BEGCYZABUyAgaA764GWdIa0lO2x1+Eyee3G1sgACsD1XA3OHaw7a70xZdFWsbahPaYOTUR0sZv8/OFGZjAhvaT8aVOxhbNZGQFBnr/X566veR0ZAeu/wD3rZMP273o6vmdC7nV195MhHzAhIQQXZzz3vA8JLRY5XLc9jLPqFaIrvRYQn0l7kQkzindAqjG1O/uPl9uAjpk9cKGEBDCZUzxjuhAo2/K9r067oIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTAxMTIyMDEwODIxWjAjBgkqhkiG9w0BCQQxFgQUGXgTRiqIay+Sx4CkkFF/Wr1CVZowDQYJKoZIhvcNAQEBBQAEgYB5rKIODrDkAq3Cp1nFNlcK5cWWjn0vNqbsUoj1ezNFcv3GMwqn9BUjDU6H5Tsw0n+gz0mSwpUOwERNp/T7MIIAttUt6ISxHf8P/Lb+tj8J46fFla8sMxBLlqh8P44obFTFYE0xxeV82sTG7xU3ABg2DX0mvU2vOOVY5XTu+D0QWw==-----END PKCS7-----">
-<input type="submit" id="submit" name="Donate" value="Donate" alt="PayPal - The safer, easier way to pay online!">
-<img src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
+          <p>Basic support is available at the <a href="http://groups.google.com/group/slidesjs">SlidesJS forum</a>. Many requests are resolved by other SlidesJS users, but assistance is not guaranteed.</p>
+
+          <p>If you're in need of direct assistance or would like customization added to SlidesJS, <a href="https://spacebox.io/s/m4TesjsOar">Premium Support is available for $100</a>. Premium support provides you direct email access and allows for up to 1 hour of support. Premium Support is typically provided within 3-7 days. A resolution to the support request is not guaranteed.</p>
+        </div>
+
+        <!-- faq -->
+        <div id="faq" class="section">
+          <h1 class="page_header"><i class="icon-question-sign icon-large"></i> Faq</h1>
+
+          <h3>Are there any other effects besides slide or fade?</h3>
+          <p>To keep SlidesJS as simple as possible, it only includes a slide or fade effect. Adding other effects would over complicate and bloat the plugin.</p>
+
+          <h3>Can I use SlidesJS on a commercial site or include it in a template that I'm selling?</h3>
+          <p>Yes you can, but you must keep the copyright and licensing information with the plugin. And if you've found SlidesJS useful, it would awesome if you'd show your support by giving a <a href="https://spacebox.io/s/BbDhQ7iWGP" class="sbe-button track_donate" target="_blank">donation</a>. If you have additional questions about licensing check out the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache license</a> which SlidesJS is licensed under.</p>
+
+          <h3>I can't figure out how to add SlidesJS to my site. Can you help me?</h3>
+          <p>SlidesJS requires some basic understanding of HTML, CSS and jQuery. If you need help with adding SlidesJS to your site please post a question at the <a href="http://groups.google.com/group/slidesjs">SlidesJS forum</a>.</p>
+
+          <p><a href="https://spacebox.io/s/m4TesjsOar">Premium Support is available for $100</a> and provides you direct email access and allows for up to 1 hour of support. Premium Support is typically provided within 3-7 days. A resolution to the support request is not guaranteed.</p>
+
+          <h3>Can I uses SlidesJS on my website?</h3>
+          <p>Yes you can, that's what it's for, but you must keep the copyright and licensing information with the plugin.</p>
+        </div>
+
+        <hr>
+
+      </div> <!-- end main .span8 -->
+      <div class="span4">
+        <div id="ad_packs">
+          <!-- BuySellAds Zone Code -->
+            <div id="bsap_1274362" class="bsarocks bsap_e1c36c6d71b660012e27f395930d4761"></div>
+          <!-- End BuySellAds Zone Code -->
+        </div>
+
+        <div class="social-buttons clearfix">
+          <ul>
+            <li class="ctwitter"><a href="http://twitter.com/share" class="socialite twitter-share" data-text="SlidesJS, a simple slideshow plugin for jQuery." data-url="http://slidesjs.com" data-count="vertical" data-via="slidesjs" rel="nofollow" target="_blank"><span class="vhidden">Share on Twitter</span></a></li>
+            <li class="cgoogle"><a href="https://plus.google.com/share?url=http://slidesjs.com" class="socialite googleplus-one" data-size="tall" data-href="http://slidesjs.com" rel="nofollow" target="_blank"><span class="vhidden">Share on Google+</span></a></li>
+            <li class="cfacebook"><a href="http://www.facebook.com/sharer.php?u=http://slidesjs.com&amp;t=SlidesJS, a simple slideshow plugin for jQuery." class="socialite facebook-like" data-href="http://slidesjs.com" data-send="false" data-layout="box_count" data-width="60" data-show-faces="false" rel="nofollow" target="_blank"><span class="vhidden">Share on Facebook</span></a></li>
+            <li class="cpinterest"><a href="http://pinterest.com/pin/create/button/?url=http://slidesjs.com/&amp;media=http://slidesjs.com/img/slidesjs-black.png&amp;description=SlidesJS, a simple slideshow plugin for jQuery" class="socialite pinterest-pinit" data-count-layout="vertical"><span class="vhidden">Pin It!</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer" class="section">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <p>This site has been built using <a href="http://fortawesome.github.com/Font-Awesome/" target="_blank">Font Awesome</a>, <a href="http://twitter.github.com/bootstrap/"  target="_blank">Twitter Bootstrap</a>, <a href="http://softwaremaniacs.org/soft/highlight/en/" target="_blank">Highlight.js</a>, <a href="http://placehold.it/" target="_blank">Placehold.it</a> and <a href="http://subtlepatterns.com/" target="_blank">Subtle Patterns</a>.</p>
+          <p>Want to advertise on this site? Check out ads via <a href="http://bsa.ly/jec">BuySellAds</a>.</p>
+          <p>SlidesJS is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache license</a>. &copy; 2013 <a href="http://nathansearles.com" target="_blank">Nathan Searles</a>. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SlidesJS Required: Link to jQuery -->
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <!-- End SlidesJS Required -->
+
+  <!-- JavaScript -->
+  <script src="js/plugins.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/script.js"></script>
+  <script src="https://spacebox.io/embed/js/embed-v1.js"></script>
+  <!-- End JavaScript -->
+
+  <!-- Highlight.js -->
+  <script>
+    hljs.tabReplace = '  ';
+    hljs.initHighlightingOnLoad();
+  </script>
+  <!-- End Highlight.js -->
+
+  <!-- SlidesJS Required: Link to jquery.slides.js -->
+  <script src="js/jquery.slides.min.js"></script>
+  <!-- End SlidesJS Required -->
+
+  <!-- SlidesJS Required: Initialize SlidesJS with a jQuery doc ready -->
+  <script>
+    $(function() {
+      $('#slides').slidesjs({
+        width: 940,
+        height: 350,
+        navigation: false
+      });
+    });
+  </script>
+  <!-- End SlidesJS Required -->
 </body>
 </html>

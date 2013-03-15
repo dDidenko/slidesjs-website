@@ -1,12 +1,12 @@
 /*
-  SlidesJS 3.0.1
+  SlidesJS 3.0.2
 
   Documentation and examples http://slidesjs.com
   Support forum http://groups.google.com/group/slidesjs
   Created by Nathan Searles http://nathansearles.com
 
-  Version: 3.0
-  Updated: March 11th, 2013
+  Version: 3.0.2
+  Updated: March 15th, 2013
 
   SlidesJS is an open source project, contribute at GitHub:
   https://github.com/nathansearles/Slides
@@ -47,7 +47,9 @@
         effect: "slide",
         interval: 5000,
         auto: false,
-        swap: true
+        swap: true,
+        pauseOnHover: false,
+        restartDelay: 2500
       },
       effect: {
         slide: {
@@ -153,12 +155,12 @@
       }
       $(".slidesjs-next", $element).click(function(e) {
         e.preventDefault();
-        _this.stop();
+        _this.stop(true);
         return _this.next(_this.options.navigation.effect);
       });
       $(".slidesjs-previous", $element).click(function(e) {
         e.preventDefault();
-        _this.stop();
+        _this.stop(true);
         return _this.previous(_this.options.navigation.effect);
       });
       if (this.options.play.active) {
@@ -180,7 +182,7 @@
         });
         stopButton.click(function(e) {
           e.preventDefault();
-          return _this.stop();
+          return _this.stop(true);
         });
         if (this.options.play.swap) {
           stopButton.css({
@@ -204,7 +206,7 @@
           }).appendTo(paginationItem);
           return paginationLink.click(function(e) {
             e.preventDefault();
-            _this.stop();
+            _this.stop(true);
             return _this.goto(($(e.currentTarget).attr("data-slidesjs-item") * 1) + 1);
           });
         });
@@ -388,7 +390,7 @@
       return e.stopPropagation();
     };
     Plugin.prototype.play = function(next) {
-      var $element, currentSlide,
+      var $element, currentSlide, slidesContainer,
         _this = this;
       $element = $(this.element);
       this.data = $.data(this);
@@ -411,6 +413,22 @@
             return _this._slide();
           }
         }), this.options.play.interval));
+        slidesContainer = $(".slidesjs-container", $element);
+        if (this.options.play.pauseOnHover) {
+          slidesContainer.unbind();
+          slidesContainer.bind("mouseenter", function() {
+            return _this.stop();
+          });
+          slidesContainer.bind("mouseleave", function() {
+            if (_this.options.play.restartDelay) {
+              return $.data(_this, "restartDelay", setTimeout((function() {
+                return _this.play(true);
+              }), _this.options.play.restartDelay));
+            } else {
+              return _this.play();
+            }
+          });
+        }
         $.data(this, "playing", true);
         $(".slidesjs-play", $element).addClass("slidesjs-playing");
         if (this.options.play.swap) {
@@ -419,11 +437,14 @@
         }
       }
     };
-    Plugin.prototype.stop = function() {
+    Plugin.prototype.stop = function(clicked) {
       var $element;
       $element = $(this.element);
       this.data = $.data(this);
       clearInterval(this.data.playInterval);
+      if (this.options.play.pauseOnHover && clicked) {
+        $(".slidesjs-container", $element).unbind();
+      }
       $.data(this, "playInterval", null);
       $.data(this, "playing", false);
       $(".slidesjs-play", $element).removeClass("slidesjs-playing");

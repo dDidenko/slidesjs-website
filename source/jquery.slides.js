@@ -1,11 +1,11 @@
 /*
-  SlidesJS 3.0.2
+  SlidesJS 3.0.3
 
   Documentation and examples http://slidesjs.com
   Support forum http://groups.google.com/group/slidesjs
   Created by Nathan Searles http://nathansearles.com
 
-  Version: 3.0.2
+  Version: 3.0.3
   Updated: March 15th, 2013
 
   SlidesJS is an open source project, contribute at GitHub:
@@ -567,28 +567,28 @@
         this._setActive(next);
         slidesControl = $(".slidesjs-control", $element);
         slidesControl.children(":eq(" + next + ")").css({
-          display: "block",
+          display: "none",
           left: 0,
-          zIndex: 0
+          zIndex: 10
         });
         this.options.callback.start(currentSlide + 1);
         if (this.options.effect.fade.crossfade) {
-          return slidesControl.children(":eq(" + this.data.current + ")").stop().fadeOut(this.options.effect.fade.speed, (function() {
+          slidesControl.children(":eq(" + this.data.current + ")").stop().fadeOut(this.options.effect.fade.speed);
+          return slidesControl.children(":eq(" + next + ")").stop().fadeIn(this.options.effect.fade.speed, (function() {
             slidesControl.children(":eq(" + next + ")").css({
-              zIndex: 10
+              zIndex: 0
             });
             $.data(_this, "animating", false);
             $.data(_this, "current", next);
             return _this.options.callback.complete(next + 1);
           }));
         } else {
-          slidesControl.children(":eq(" + next + ")").css({
-            display: "none"
-          });
           return slidesControl.children(":eq(" + currentSlide + ")").stop().fadeOut(this.options.effect.fade.speed, (function() {
-            slidesControl.children(":eq(" + next + ")").stop().fadeIn(_this.options.effect.fade.speed).css({
-              zIndex: 10
-            });
+            slidesControl.children(":eq(" + next + ")").stop().fadeIn(_this.options.effect.fade.speed, (function() {
+              return slidesControl.children(":eq(" + next + ")").css({
+                zIndex: 10
+              });
+            }));
             $.data(_this, "animating", false);
             $.data(_this, "current", next);
             return _this.options.callback.complete(next + 1);

@@ -215,7 +215,7 @@
         return _this.update();
       });
       this._setActive();
-      if (this.options.play.auto) {
+      if (this.options.play.auto && this.data.total>1) {
         this.play();
       }
       return this.options.callback.loaded(this.options.start);
